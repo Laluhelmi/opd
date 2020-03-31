@@ -23,6 +23,7 @@ Route::resource('struktural', 'StrukturalController');
 Route::resource('abk', 'AbkController');
 Route::get('/abk_struktural','AbkController@jabatanStruktural')->name('abk_struktural');
 Route::get('/abk_fungsional','AbkController@jabatanFungsional')->name('abk_fungsional');
+Route::post('/abk/update','AbkController@update')->name('abk_update');
 
 Route::post('/import_abk_fungsional', 'AbkController@importAbkFungsional');
 Route::get('/coba', 'AbkController@coba');

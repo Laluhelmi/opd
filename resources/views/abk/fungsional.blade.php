@@ -1,14 +1,70 @@
 
 @extends('layouts.app')
+
+@section('css')
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+@stop
 @section('js')
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#table').DataTable({
       "iDisplayLength": 10
     });
+var jabatans = [];
 
-} );
+var jabatanId = "-1";
+
+@foreach($datas as $data)
+
+    <?php if (strstr($data->nama_jabatan,'/')) : ?>
+      <?php $stringFiltered = preg_replace('/\s+/', ' ', trim($data->nama_jabatan));?>
+
+      var jabatan = {
+                       label : '{{ $stringFiltered }}',
+                       opd   : '{{$data->opd->nama_opd}}',
+                       id    : '{{$data->id}}'    
+                    }
+
+      jabatans.push(jabatan);
+      
+      <?php else :?>
+      <?php $stringFiltered = preg_replace('/\s+/', ' ', trim($data->nama_jabatan));?>
+      var jabatan = {
+                       label : '{{ $stringFiltered }}',
+                       opd   : '{{$data->opd->nama_opd}}',
+                       id    : '{{$data->id}}'     
+                    }
+
+      jabatans.push(jabatan);
+     <?php endif ?>
+
+  @endforeach
+
+    $( "#tags" ).autocomplete({
+      source: jabatans,
+      select: function( event , ui ) {
+          $('#jabatanId').val(ui.item.id);
+        }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      console.log( JSON.stringify(item) ); 
+      return $( "<li>" )
+        .append( "<div><font style = 'font-size : 13px'>" +item.label+ "</font>"+
+                 "<font style = 'font-size : 8px;margin-top : -9'> Opd : "+item.opd+"</font></div>" )
+        .appendTo( ul );
+    };;
+
+  });
+
+  console.log("halo")
+
 </script>
+@stop
+
+@section('css')
+<link rel="stylesheet" href="{{asset('css/autocomplete.css')}}">
 @stop
 
 @section('content')
@@ -21,13 +77,8 @@
   <form action="{{ url('import_abk_fungsional') }}" method="post" class="form-inline" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             
-
-                            <select class="form-control" name="jabatan" required="">
-                                <option value="">--Pilih Jabatan--</option>
-                                @foreach($datas as $data)
-                                   <option value="{{$data->id}}">{{$data->nama_jabatan}}</option>
-                                @endforeach
-                            </select>
+                            <input type= "hidden" name="jabatan" id="jabatanId"/>
+                            <input  placeholder = "Nama jabatan" style = "width : 100%"id="tags" type="text" class="form-control" name="importAbk" required="">
    
   </div>
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -104,7 +155,8 @@
                             Action
                           </button>
                           <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
-                            <a class="dropdown-item" href=""> Edit </a>
+                            <a class="dropdown-item" href="{{route('abk.show', ['id' => $data->id])}}"> Lihat </a>
+                            <a class="dropdown-item" href="{{route('abk.edit', ['id' => $data->id])}}"> Edit </a>
                             {{ method_field('delete') }}
                             <button class="dropdown-item" onclick="return confirm('Anda yakin ingin menghapus data ini?')"> Delete
                             </button>

@@ -10,6 +10,7 @@ use App\Struktural;
 use App\Fungsional;
 use App\User;
 use Excel;
+use PDF;
 
 class AbkController extends Controller
 {
@@ -53,7 +54,8 @@ class AbkController extends Controller
         
         $kode_opd = $request->get('jabatan');
         $this->validate($request, [
-            'importAbk' => 'required'
+            'importAbk' => 'required',
+            'jabatan'   => 'required'
         ]);
 
         if ($request->hasFile('importAbk')) {
@@ -127,7 +129,15 @@ class AbkController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = ['title' => 'Welcome to belajarphp.net'];
+    
+        $datas   = Abk::where("jabatan_fungsional_id",$id)->get();
+        $jabatan = Fungsional::find($id); 
+        
+        $pdf = PDF::loadView('abk.pdfView', ['datas'   => $datas,
+                                             'jabatan' => $jabatan]);
+        return $pdf->download('laporan-pdf.pdf');
+        //return view ('abk.pdfView', compact('datas'));
     }
 
     /**
@@ -138,7 +148,11 @@ class AbkController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jabatan  = Fungsional::find($id);
+        $datas    = Fungsional::find($id)->abk;
+        //echo $jabatan;
+        return view ('abk.edit',compact('datas','jabatan'));
+        
     }
 
     /**
@@ -148,9 +162,38 @@ class AbkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+       $uraian = $request->get('uraian_tugas');
+       $abkId  = $request->get("abk_id");
+       $update = $request->get("update");
+       $delete = $request->get("delete");
+       $idCheckbox = $request->get("abk_checkbox");
+
+       if($update != null){
+        $this->validate($request, [
+            'uraian_tugas' => 'required',
+            'abk_id' => 'required'
+            ]);
+            $index = 0;
+            foreach ($abkId as $id){
+                Abk::where('id_abk', $id)
+                ->update(['uraian_tugas' => $uraian[$index]]);
+                $index++;   
+            }   
+    
+         alert()->success('Berhasil.','Data telah diupdate!');
+        
+       }
+
+       else {
+           Abk::destroy($idCheckbox);
+           alert()->success('Berhasil.','Data berhasil dihapus');
+        }
+
+       return back();
+
+     
     }
 
     /**
@@ -163,4 +206,5 @@ class AbkController extends Controller
     {
         //
     }
+
 }

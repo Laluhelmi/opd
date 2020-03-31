@@ -16577,4 +16577,14 @@ ul {
         cursor: pointer;
       }
 
+
+      .tableBiasa {
+        font-size : 12px;
+      }
+      .tableBiasa  td{
+        padding-right : 15px;
+      }
+      .tableBiasa tr{
+        padding-top: 10px; padding-bottom:10px
+      }
     

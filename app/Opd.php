@@ -15,7 +15,7 @@ class Opd extends Model
     }
 
     public function fungsional(){
-        return $this->belongsTo(Fungsional::class);
+        return $this->hasMany('App\Fungsional','kode_opd');
     }
 
     public function struktural(){

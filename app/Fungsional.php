@@ -11,5 +11,9 @@ class Fungsional extends Model
     public function opd(){
         return $this->belongsTo(Opd::class,'kode_opd','kode_opd');
     }
+
+    public function abk(){
+        return $this->hasMany('App\Abk','jabatan_fungsional_id');
+    }
     
 }
