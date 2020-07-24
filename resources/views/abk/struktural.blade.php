@@ -1,3 +1,69 @@
+
+@section('css')
+
+<style>
+
+    .direktur{
+        display : inline-block;
+        border-style: ridge;
+        padding : 10
+    }
+
+    .b2{
+        display: flex;
+        width : 100%;
+        /* margin-top : 35px; */
+       
+    }
+
+    .horizontal-sub{
+        flex : 1;
+      
+    }
+
+    .horizontal-center {
+        padding :0px;
+        border-style: ridge;
+        width: 95%;
+        margin: 0 auto;
+        position: relative;
+        text-align : center;
+
+        /* left: 40%; */
+    }
+
+    .flex-container{
+      font-size: 11px;
+      overflow-x:scroll;    
+    }
+    .last-child-container{
+      display : flex;
+    }
+    .last-child{
+      flex : 90;
+      text-align : center;
+      border-style: ridge;
+      font-size : 0.7vw;
+      margin-top : 5px;
+      margin-right: 5px;
+    }
+    .vertical-line{
+        background-color: black;
+        /* width: 50%; */
+        margin: 0 auto;
+        width : 1px;
+        height : 50px;
+    }
+    .vertical-line2{
+      background-color: black;
+        /* width: 50%; */
+      margin: 0 auto;
+      width : 1px;
+      height : 10px;
+    }
+
+</style>
+@stop
 @section('js')
 <script type="text/javascript">
   $(document).ready(function() {
@@ -11,6 +77,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="row">
 
   <div class="col-lg-2">
@@ -50,7 +117,7 @@
               <div class="card">
 
                 <div class="card-body">
-                  <h4 class="card-title pull-left">Data ABK</h4>
+                  <!-- <h4 class="card-title pull-left">Data ABK</h4>
                   <a href="{{url('format_buku')}}" class="btn btn-xs btn-info pull-right">Format ABK</a>
                   <div class="table-responsive">
                     <table class="table table-striped" id="table">
@@ -117,9 +184,174 @@
                       </tbody>
                     </table>
                   </div>
-               {{--  {!! $datas->links() !!} --}}
+               {{--  {!! $datas->links() !!} --}} -->
+                </div>
+               
+<div class = "flex-container">
+
+
+<div>
+    <center style = "margin-top : 20px">
+    <div class = 'direktur'>
+     Sekretaris Daerah
+    </div>
+    </center>
+    </div>
+    <div class="vertical-line"> &nbsp</div>    
+    <!-- <div style = "background-color : black;height : 1px;margin-left:12.5%;margin-right:12.5%"></div>
+     -->
+    <div class = "b2">
+    <div class="horizontal-sub">
+    
+        <div style = "background-color : black;height : 1px;margin-left:50%"></div>
+        <div class="vertical-line"> &nbsp</div>    
+        <div class="horizontal-center">Asisten Perekonomian dan Pembangunan </div>
+        <div class="vertical-line"> &nbsp</div> 
+    
+        <div class="b2">
+        <div class="horizontal-sub">
+        <div style = "background-color : black;height : 1px;margin-left:50%"></div>
+        <div class="vertical-line"> &nbsp</div>    
+        <div class="horizontal-center">Kepala Bagian Ekonomi</div>
+                  
+        <div class="vertical-line2"> &nbsp</div> 
+
+              <div style="width: 100%;background-color : ">
+                <div style = "width: 50%;background-color: black;height:1px">
+                &nbsp
+                </div>
+                <div style = "display: flex;background-color: ">
+                  <div class="last-child-container" style = "">
+                  <div style = "width: 1px;height: 100%;background-color: black;
+                    margin-top : 0;flex : 1">&nbsp</div>
+                    <div style = "width: 10px;height: 1px ;background-color: blue;
+                    top : 50%;position: relative;
+                    ;flex : 9">&nbsp</div>
+                    
+                    <div class="last-child">
+                    Asisten Perekonomian dan Pembangunan 
+                    
+                    </div>
+                
+                  </div>
+                </div>
+                <div style = "display: flex">
+                  <div class="last-child-container" style = "">
+                  <div style = "width: 1px;height: 50%;background-color: black;
+                    margin-top : 0;flex : 1">&nbsp</div>
+                    <div style = "width: 10px;height: 1px ;background-color: blue;
+                    top : 50%;position: relative;
+                    ;flex : 9">&nbsp</div>
+                    
+                    <div class="last-child">
+                    Asisten Perekonomian dan Pembangunan 
+                    
+                    </div>
+                
+                  </div>
                 </div>
               </div>
+              
+        </div> 
+        <div class="horizontal-sub">
+        <div style = "background-color : black;height : 1px;margin-right:50%"></div>
+        <div class="vertical-line"> &nbsp</div>    
+         <div class="horizontal-center">Kepala Bagian Administrasi Pengendalian Pembanguna</div>
+                     
+        <div class="vertical-line2"> &nbsp</div> 
+
+<div style="width: 100%;background-color : kblue">
+  <div style = "width: 50%;background-color: black;height:1px">
+  &nbsp
+  </div>
+  <div style = "display: flex">
+    <div class="last-child-container" style = "">
+    <div style = "width: 1px;height: 50%;background-color: black;
+      margin-top : 0;flex : 1">&nbsp</div>
+      <div style = "width: 10px;height: 1px ;background-color: blue;
+      margin-top : 50%;margin-bottom: 51%;
+      ;flex : 9">&nbsp</div>
+      
+      <div class="last-child">
+      Asisten Perekonomian dan Pembangunan 
+      
+      </div>
+  
+    </div>
+  </div>
+  
+</div>
+        </div> 
+        </div>
+    </div>
+    <div class="horizontal-sub">
+        
+    <div style = "background-color : black;height : 1px"></div>
+        <div class="vertical-line"> &nbsp</div>    
+        <div class="horizontal-center">Sekretaris Daerah</div>
+    </div>
+  
+    
+ 
+
+
+    <div class="horizontal-sub">
+    
+    <div style = "background-color : black;height : 1px"></div>
+        <div class="vertical-line"> &nbsp</div>    
+        <div class="horizontal-center">Asisten Pemerintahan</div>
+       
+    </div>
+
+    <div class="horizontal-sub">
+    
+    <div style = "background-color : black;height : 1px"></div>
+        <div class="vertical-line"> &nbsp</div>    
+        <div class="horizontal-center">Asisten Administrasi Umum</div>
+        <div class="vertical-line"> &nbsp</div> 
+        <div style = "background-color : black;height : 1px;margin-left:25%;margin-right:25%"></div>
+    
+        <div class="b2">
+        <div class="horizontal-sub">
+        <div class="vertical-line"> &nbsp</div>    
+         <div class="horizontal-center">Kepala Bagian Pelawan Teknis</div>
+        </div> 
+        <div class="horizontal-sub">
+        <div class="vertical-line"> &nbsp</div>    
+         <div class="horizontal-center">Kepala Bagian Pelawan Teknis</div>  
+        </div> 
+        </div>
+    </div>
+
+    <div class="horizontal-sub">
+    
+    <div style = "background-color : black;height : 1px"></div>
+        <div class="vertical-line"> &nbsp</div>    
+        <div class="horizontal-center">Staf Ahli Bidang Hukum, Politik dan Pemerintahan</div>
+       
+    </div>
+
+    <div class="horizontal-sub">
+    
+    <div style = "background-color : black;height : 1px"></div>
+        <div class="vertical-line"> &nbsp</div>    
+        <div class="horizontal-center">Staf Ahli Bidang Ekonomi, Keuangan dan Pembangunan</div>
+       
+    </div>
+
+    <div class="horizontal-sub">
+    
+    <div style = "background-color : black;height : 1px;margin-right:50%"></div>
+        <div class="vertical-line"> &nbsp</div>    
+        <div class="horizontal-center">Staf Ahli Bidang Kemasyarakatan dan Sumber Daya Ma...</div>
+        
+    </div>   
+    
+    </div>
+</div>              </div>
             </div>
           </div>
+
+          
+
 @endsection

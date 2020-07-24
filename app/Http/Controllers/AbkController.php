@@ -46,6 +46,26 @@ class AbkController extends Controller
         //
     }
 
+    public function coba($id){
+        $datas = Struktural::orderBy('kode_seksi','ASC')->
+                             orderBy('kode_seksi','ASC')->
+                             get()->where('kode_opd','=',$id);
+        //echo json_encode($datas);          
+        $isKodeUrusanExist = false;
+        $tempVar = "";
+        foreach($datas as $data){
+            if($tempVar == ""){
+                $tempVar = $data->kode_urusan;
+            }
+            if ($tempVar != $data->kode_urusan){
+                $isKodeUrusanExist = true;
+            break;
+            }
+        }         
+        return view ('coba', compact('datas','isKodeUrusanExist'));
+        //return view ('coba');
+    }
+
     public function importAbkFungsional(Request $request)
     {
         $i = 0;

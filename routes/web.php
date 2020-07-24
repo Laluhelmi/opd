@@ -26,4 +26,4 @@ Route::get('/abk_fungsional','AbkController@jabatanFungsional')->name('abk_fungs
 Route::post('/abk/update','AbkController@update')->name('abk_update');
 
 Route::post('/import_abk_fungsional', 'AbkController@importAbkFungsional');
-Route::get('/coba', 'AbkController@coba');
+Route::get('/coba/{id}', 'AbkController@coba');

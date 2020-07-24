@@ -194,3 +194,7 @@ class UserController extends Controller
         return redirect()->to('user');
     }
 }
+
+
+
+
